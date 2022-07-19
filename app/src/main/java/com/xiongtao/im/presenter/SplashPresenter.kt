@@ -1,5 +1,6 @@
 package com.xiongtao.im.presenter
 
+import com.hyphenate.chat.EMClient
 import com.xiongtao.im.contract.SplashContract
 
 class SplashPresenter(val view: SplashContract.View): SplashContract.Presenter {
@@ -8,6 +9,6 @@ class SplashPresenter(val view: SplashContract.View): SplashContract.Presenter {
     }
 
     private fun isLoginIn(): Boolean {
-        return false
+        return EMClient.getInstance().isConnected && EMClient.getInstance().isLoggedInBefore
     }
 }

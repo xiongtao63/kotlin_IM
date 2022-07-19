@@ -10,6 +10,8 @@ buildscript {
     repositories {
         google()
         mavenCentral()
+        maven { url 'http://developer.huawei.com/repo'
+            allowInsecureProtocol = true} //如果需要使用华为推送HMS，则需要加上此句
     }
     dependencies {
         classpath "com.android.tools.build:gradle:7.0.1"

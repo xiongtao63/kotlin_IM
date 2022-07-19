@@ -1,0 +1,15 @@
+<tabs>
+    <tab
+        id="@+id/tab_conversation"
+        icon="@drawable/ic_launcher_background"
+        title="消息" />
+    <tab
+        id="@+id/tab_contacts"
+        icon="@drawable/ic_launcher_background"
+        title="联系人" />
+    <tab
+        id="@+id/tab_dynamic"
+        icon="@drawable/ic_launcher_background"
+        title="动态" />
+
+</tabs>

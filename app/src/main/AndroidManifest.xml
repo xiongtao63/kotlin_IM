@@ -2,19 +2,47 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.xiongtao.im">
 
+    <!-- IM SDK required start -->
+    <!-- 允许程序振动，用于本地通知设置振动 -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <!-- 访问网络权限 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 麦克风权限，用于语音消息时录制语音，不使用录制语音可以移除 -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <!-- 相机权限，用于图片消息时拍摄图片，不使用拍照可以移除 -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <!-- 获取运营商信息，用于获取网络状态 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <!-- 写入扩展存储权限，用于附件等的存储 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <!-- 访问GPS定位，用于定位消息，如果不用定位相关可以移除 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <!-- api 21后被标记为deprecated，可以移除 -->
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <!-- 允许程序在手机屏幕关闭后后台进程仍然运行 -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <!-- 允许程序开机自动运行，SDK保活时使用，如果使用厂商推送，可以移除 -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <!--获取wifi网络状态的信息 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!-- IM SDK required end -->
+
     <application
+        android:name=".app.IMApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
         android:theme="@style/Theme.IM">
         <activity
-            android:name=".MainActivity"
-            android:exported="true">
+            android:name=".ui.activity.MainActivity">
 
         </activity>
-        <activity android:name=".SplashActivity"
+        <activity android:name=".ui.activity.SplashActivity"
             android:exported="true"
             android:theme="@style/FullScreen">
             <intent-filter>
@@ -23,6 +51,38 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.activity.LoginActivity" />
+        <activity android:name=".ui.activity.RegisterActivity" />
+
+
+        <uses-library android:name="org.apache.http.legacy" android:required="false"/>
+
+        <!-- 设置环信应用的 AppKey -->
+        <meta-data android:name="EASEMOB_APPKEY"  android:value="1153220718125518#qqdemo" />
+        <!-- 声明 SDK 所需的 service SDK 核心功能-->
+        <service android:name="com.hyphenate.chat.EMChatService" android:exported="true"/>
+        <service android:name="com.hyphenate.chat.EMJobService"
+            android:permission="android.permission.BIND_JOB_SERVICE"
+            android:exported="true"
+            />
+        <!-- 声明 SDK 所需的 receiver -->
+        <receiver android:name="com.hyphenate.chat.EMMonitorReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_REMOVED"/>
+                <data android:scheme="package"/>
+            </intent-filter>
+            <!-- 可选 filter -->
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.USER_PRESENT" />
+            </intent-filter>
+        </receiver>
+
+        <provider
+            android:name="cn.bmob.v3.util.BmobContentProvider"
+            android:authorities="com.xiongtao.im.BmobContentProvider">
+        </provider>
     </application>
 
 </manifest>

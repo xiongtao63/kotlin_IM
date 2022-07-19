@@ -1,12 +1,18 @@
-package com.xiongtao.im
+package com.xiongtao.im.ui.activity
 
 import android.app.ProgressDialog
+import android.content.Context
 import android.os.Bundle
+import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 
 abstract class BaseActivity : AppCompatActivity() {
-    val progreddDialog: ProgressDialog by lazy {
+    private val progreddDialog: ProgressDialog by lazy {
         ProgressDialog(this)
+    }
+
+    val inputMethodManager by lazy {
+        getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,5 +34,9 @@ abstract class BaseActivity : AppCompatActivity() {
 
     fun dismissProgress(){
         progreddDialog.dismiss()
+    }
+
+    fun hideSoftKeyBoard(){
+        inputMethodManager.hideSoftInputFromWindow(currentFocus?.windowToken,0)
     }
 }

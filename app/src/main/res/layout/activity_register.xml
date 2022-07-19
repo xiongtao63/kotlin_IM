@@ -21,18 +21,20 @@
        android:layout_height="wrap_content"
        android:inputType="numberPassword"
        />
+   <EditText
+       android:id="@+id/confirm_password"
+       android:hint="确认密码"
+       android:layout_marginTop="30dp"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:inputType="numberPassword"
+       />
     <Button
-        android:id="@+id/login"
+        android:id="@+id/register"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:text="登录"/>
-    <TextView
-        android:id="@+id/newRegister"
-        android:layout_width="100dp"
-        android:gravity="center"
-        android:layout_marginTop="20dp"
-        android:layout_height="30dp"
         android:text="注册"/>
+
 
 </LinearLayout>

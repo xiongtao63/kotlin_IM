@@ -1,4 +1,4 @@
-package com.xiongtao.im
+package com.xiongtao.im.ui.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
