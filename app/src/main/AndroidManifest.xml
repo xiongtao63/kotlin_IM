@@ -39,7 +39,8 @@
         android:usesCleartextTraffic="true"
         android:theme="@style/Theme.IM">
         <activity
-            android:name=".ui.activity.MainActivity">
+            android:name=".ui.activity.MainActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
         </activity>
         <activity android:name=".ui.activity.SplashActivity"
@@ -53,6 +54,7 @@
         </activity>
         <activity android:name=".ui.activity.LoginActivity" />
         <activity android:name=".ui.activity.RegisterActivity" />
+        <activity android:name=".ui.activity.ChatActivity" />
 
 
         <uses-library android:name="org.apache.http.legacy" android:required="false"/>

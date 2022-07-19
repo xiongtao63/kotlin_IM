@@ -13,9 +13,9 @@ class FragmentFactory private constructor() {
 
     fun getFragment(id: Int): Fragment? {
         when (id) {
-            R.id.tab_conversation -> ConversationFragment()
-            R.id.tab_contacts -> ContactsFragment()
-            R.id.tab_dynamic -> DynamicFragment()
+            R.id.tab_conversation -> return ConversationFragment()
+            R.id.tab_contacts -> return ContactsFragment()
+            R.id.tab_dynamic -> return DynamicFragment()
         }
         return null
 

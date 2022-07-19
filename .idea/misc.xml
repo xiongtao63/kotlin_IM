@@ -4,10 +4,12 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/androidProject/IM/app/src/main/res/drawable/ic_launcher_background.xml" value="0.11197916666666667" />
+        <entry key="..\:/androidProject/IM/app/src/main/res/layout/activity_chat.xml" value="0.20364583333333333" />
         <entry key="..\:/androidProject/IM/app/src/main/res/layout/activity_login.xml" value="0.22" />
         <entry key="..\:/androidProject/IM/app/src/main/res/layout/activity_main.xml" value="0.20364583333333333" />
         <entry key="..\:/androidProject/IM/app/src/main/res/layout/activity_register.xml" value="0.20364583333333333" />
         <entry key="..\:/androidProject/IM/app/src/main/res/layout/activity_splash.xml" value="0.1" />
+        <entry key="..\:/androidProject/IM/app/src/main/res/layout/contact_item.xml" value="0.20364583333333333" />
         <entry key="..\:/androidProject/IM/app/src/main/res/layout/fragment_contacts.xml" value="0.20364583333333333" />
         <entry key="..\:/androidProject/IM/app/src/main/res/layout/fragment_conversation.xml" value="0.20364583333333333" />
         <entry key="..\:/androidProject/IM/app/src/main/res/layout/fragment_dynamic.xml" value="0.20364583333333333" />

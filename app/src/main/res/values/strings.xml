@@ -12,5 +12,10 @@
     <string name="dynamic">动态</string>
     <string name="logout">退(%s)出</string>
     <string name="logout_failed">退出失败</string>
+    <string name="contract">联系人</string>
+    <string name="load_failed">加载失败</string>
+    <string name="delete_dialog_title">是否删除</string>
+    <string name="delete_cancel">取消</string>
+    <string name="delete_sure">确认</string>
 
 </resources>
