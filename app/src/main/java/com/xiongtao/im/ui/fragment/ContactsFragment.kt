@@ -14,22 +14,67 @@ import com.hyphenate.EMContactListener
 
 import com.hyphenate.chat.EMClient
 import com.xiongtao.im.adapter.EMContactListenerAdapter
+import com.xiongtao.im.ui.activity.AddFriendActivity
+import com.xiongtao.im.widget.OnSliderTouchListener
+import org.jetbrains.anko.startActivity
 
 
 class ContactsFragment : BaseFragment(), ContactsContract.View {
     val presenter by lazy {
         ContactsPresenter(this)
     }
-    override fun getLayoutResId(): Int  = R.layout.fragment_contacts
 
-    @SuppressLint("ResourceAsColor")
+    val listener = object :
+        EMContactListenerAdapter() {
+        override fun onContactDeleted(username: String?) {
+            presenter.loadData()
+        }
+
+        override fun onContactAdded(username: String?) {
+            presenter.loadData()
+        }
+    }
+
+    override fun getLayoutResId(): Int = R.layout.fragment_contacts
+
+
     override fun init() {
         super.init()
-        header_title.text = getString(R.string.contract)
-        add.visibility = View.VISIBLE
+        initHeader()
+        initSwipeRefreshLayout()
+        initRecycleView()
+        initSlidBar()
+        presenter.loadData()
 
-        add.setOnClickListener { addFriend() }
+        EMClient.getInstance().contactManager().setContactListener(listener)
 
+    }
+
+    private fun initSlidBar() {
+        slideBar.onTouchListener = object : OnSliderTouchListener {
+            override fun onShowChar(string: String, index: Int) {
+                section.text = string
+                section.visibility = View.VISIBLE
+                recyclerView.scrollToPosition(index)
+            }
+
+            override fun onHideChar() {
+                section.visibility = View.GONE
+            }
+
+        }
+    }
+
+    private fun initRecycleView() {
+        recyclerView.apply {
+            setHasFixedSize(true)
+            layoutManager = LinearLayoutManager(activity)
+            adapter = activity?.let { ContractAdapter(it, presenter.contactListItems) }
+        }
+    }
+
+    @SuppressLint("ResourceAsColor")
+    private fun initSwipeRefreshLayout() {
         swipeRefreshLayout.apply {
             setColorSchemeColors(R.color.purple_200)
             isRefreshing = true
@@ -38,29 +83,12 @@ class ContactsFragment : BaseFragment(), ContactsContract.View {
             }
 
         }
-
-        recyclerView.apply {
-            setHasFixedSize(true)
-            layoutManager = LinearLayoutManager(activity)
-            adapter = activity?.let { ContractAdapter(it,presenter.contactListItems) }
-        }
-        presenter.loadData()
-
-
-        EMClient.getInstance().contactManager().setContactListener(object :
-            EMContactListenerAdapter() {
-            override fun onContactDeleted(username: String?) {
-                presenter.loadData()
-            }
-        })
-
-
     }
 
-
-
-    private fun addFriend() {
-//        presenter.addFriend()
+    private fun initHeader() {
+        header_title.text = getString(R.string.contract)
+        add.visibility = View.VISIBLE
+        add.setOnClickListener { context?.startActivity<AddFriendActivity>() }
     }
 
     override fun onStartLoad() {
@@ -74,5 +102,10 @@ class ContactsFragment : BaseFragment(), ContactsContract.View {
     override fun onLoadFailed() {
         swipeRefreshLayout.isRefreshing = false
         context?.toast(getString(R.string.load_failed))
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        EMClient.getInstance().contactManager().removeContactListener(listener)
     }
 }

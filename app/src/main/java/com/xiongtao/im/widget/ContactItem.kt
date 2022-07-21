@@ -10,7 +10,7 @@ import com.xiongtao.im.data.ContactListItem
 import kotlinx.android.synthetic.main.contact_item.view.*
 import java.util.zip.Inflater
 
-class ContractItem(context: Context, attrs: AttributeSet? = null):
+class ContactItem(context: Context, attrs: AttributeSet? = null):
     RelativeLayout(context, attrs) {
     fun bindView(contactListItem: ContactListItem) {
         if(contactListItem.showFirst){

@@ -1,18 +1,15 @@
 package com.xiongtao.im.adapter
 
 import android.content.Context
-import android.content.DialogInterface
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.hyphenate.chat.EMClient
-import com.hyphenate.exceptions.HyphenateException
 import com.xiongtao.im.R
 import com.xiongtao.im.data.ContactListItem
 import com.xiongtao.im.ui.activity.ChatActivity
-import com.xiongtao.im.widget.ContractItem
-import io.reactivex.internal.subscriptions.SubscriptionHelper.cancel
+import com.xiongtao.im.widget.ContactItem
 import org.jetbrains.anko.runOnUiThread
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
@@ -20,12 +17,12 @@ import org.jetbrains.anko.toast
 class ContractAdapter(val context: Context, val contactListItems: MutableList<ContactListItem>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val itemView = ContractItem(context)
+        val itemView = ContactItem(context)
         return ContractItemViewHolder(itemView)
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        val contractItem = holder.itemView as ContractItem
+        val contractItem = holder.itemView as ContactItem
         contractItem.bindView(contactListItems[position])
         val username = contactListItems[position].userName
         contractItem.setOnClickListener {

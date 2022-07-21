@@ -3,8 +3,10 @@ package com.xiongtao.im.widget
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Canvas
+import android.graphics.Color
 import android.graphics.Paint
 import android.util.AttributeSet
+import android.view.MotionEvent
 import android.widget.RelativeLayout
 import androidx.core.view.size
 import com.xiongtao.im.R
@@ -19,6 +21,8 @@ class SliderBar(context: Context, attrs: AttributeSet? = null) : RelativeLayout(
         val LETTERS = listOf("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K",
             "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z")
     }
+
+    lateinit var onTouchListener: OnSliderTouchListener
 
     val paint by lazy {
         Paint()
@@ -51,4 +55,35 @@ class SliderBar(context: Context, attrs: AttributeSet? = null) : RelativeLayout(
         }
     }
 
+    override fun onTouchEvent(event: MotionEvent): Boolean {
+        when(event.action){
+            MotionEvent.ACTION_DOWN -> {
+                setBackgroundResource(R.drawable.contact_bg)
+                var index = (event.y / sectionHeight).toInt()
+                if(index < 0) index = 0
+                if(index >= LETTERS.size) index = LETTERS.size -1
+                val char = LETTERS[index]
+                onTouchListener.onShowChar(char,index)
+            }
+            MotionEvent.ACTION_UP -> {
+                setBackgroundColor(Color.TRANSPARENT)
+                onTouchListener.onHideChar()
+            }
+            MotionEvent.ACTION_MOVE -> {
+                var index = (event.y / sectionHeight).toInt()
+                if(index < 0) index = 0
+                if(index >= LETTERS.size) index = LETTERS.size -1
+                val char = LETTERS[index]
+                onTouchListener.onShowChar(char,index)
+            }
+        }
+
+        return true
+
+    }
+
+}
+interface OnSliderTouchListener{
+    fun onShowChar(string: String,index:Int)
+    fun onHideChar()
 }

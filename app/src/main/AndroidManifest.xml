@@ -37,10 +37,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
-        android:theme="@style/Theme.IM">
+        android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.activity.MainActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            android:name=".ui.activity.MainActivity">
 
         </activity>
         <activity android:name=".ui.activity.SplashActivity"
@@ -54,7 +53,9 @@
         </activity>
         <activity android:name=".ui.activity.LoginActivity" />
         <activity android:name=".ui.activity.RegisterActivity" />
-        <activity android:name=".ui.activity.ChatActivity" />
+        <activity android:name=".ui.activity.ChatActivity"
+            android:parentActivityName=".ui.activity.MainActivity"/>
+        <activity android:name=".ui.activity.AddFriendActivity" />
 
 
         <uses-library android:name="org.apache.http.legacy" android:required="false"/>

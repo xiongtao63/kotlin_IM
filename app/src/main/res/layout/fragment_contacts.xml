@@ -4,28 +4,40 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
     <include layout="@layout/header"/>
-    <RelativeLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <com.xiongtao.im.widget.SliderBar
-            android:id="@+id/slideBar"
-            android:layout_width="40dp"
-            android:layout_height="match_parent"
-            android:background="@color/teal_200"
-            android:layout_alignParentRight="true"
-            />
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/swipeRefreshLayout"
             android:layout_width="match_parent"
+            android:layout_marginRight="40dp"
             android:layout_height="match_parent">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+            />
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-    </RelativeLayout>
+        <com.xiongtao.im.widget.SliderBar
+            android:id="@+id/slideBar"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:layout_gravity="right"
+            />
+
+        <TextView
+            android:id="@+id/section"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="50sp"
+            android:textColor="@color/teal_200"
+            android:layout_gravity="center"
+            ></TextView>
+
+    </FrameLayout>
 
 
 
